@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Rent Home App
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The **Rent Home App** is a modern web application designed to help users browse, rent, and manage rental properties. The app is built with a focus on performance, scalability, and ease of use. It uses the latest technologies like **Next.js**, **MongoDB**, **Prisma**, **Tailwind CSS**, and **NextAuth** to provide a seamless experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- User authentication using **NextAuth** (supports various providers)
+- Property listings with search and filter functionality
+- User profile management (view and edit properties)
+- Responsive design for mobile and desktop
+- Integrated with **MongoDB** for data storage
+- ORM support using **Prisma**
+- Tailwind CSS for fast and efficient styling
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- **Next.js** - React-based framework for building fast, server-rendered apps.
+- **MongoDB** - NoSQL database to store rental property data and user information.
+- **Prisma** - ORM for interacting with the MongoDB database.
+- **Tailwind CSS** - Utility-first CSS framework for rapid styling.
+- **NextAuth** - Authentication library for Next.js apps.
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Node.js](https://nodejs.org/en/) (v14 or higher)
+- [MongoDB](https://www.mongodb.com/) (you can use a local or cloud instance)
 
-## Deploy on Vercel
+### Steps to Install
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/rent-home-app.git
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Navigate to the project directory:
+   ```bash
+   cd rent-home-app
+   ```
+
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Set up environment variables. Create a `.env.local` file in the root of the project and add the following:
+   ```env
+   MONGODB_URI=your-mongodb-uri
+   NEXTAUTH_SECRET=your-nextauth-secret
+   ```
+
+   Replace `your-mongodb-uri` with your MongoDB connection string and `your-nextauth-secret` with a secret key for NextAuth.
+
+5. Set up Prisma:
+   ```bash
+   npx prisma migrate dev
+   ```
+
+6. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+   The app will be available at `http://localhost:3000`.
+
+## Usage
+
+1. **Sign Up / Log In**: Create an account or log in using **NextAuth**. You can use various authentication providers like Google, Facebook, or email.
+2. **Browse Properties**: View rental listings, filter by various criteria (price, location, etc.).
+3. **Manage Profile**: Update your profile details and manage your rental preferences.
+
+## License
+
+This project is licensed under the MIT License.
