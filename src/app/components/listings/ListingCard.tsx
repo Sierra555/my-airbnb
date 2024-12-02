@@ -2,12 +2,12 @@
 
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeUser, SafeReservation } from "@/app/types";
-import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { format } from 'date-fns';
 import Image from "next/image";
 import HeartButton from "./HeartButton";
 import Button from "../Button";
+import Link from "next/link";
 
 type ListingCardProps = {
     data: SafeListing,
@@ -19,7 +19,6 @@ type ListingCardProps = {
     currentUser?: SafeUser | null,
 }
 const ListingCard = ({ data, reservation, onAction, actionlabel, actionId = '', disabled, currentUser } : ListingCardProps) => {
-    const router = useRouter();
     const { getByValue } = useCountries();
     const location= getByValue(data.locationValue);
 
@@ -55,64 +54,65 @@ const ListingCard = ({ data, reservation, onAction, actionlabel, actionId = '', 
     }, [reservation, reservation?.startDate, reservation?.endDate]);
 
   return (
-    <div 
-        className="col-span-1 cursor-pointer group"
-        onClick={() => router.push(`/listings/${data.id}`)}
-        aria-label={`Go to your lisitng - ${data.title}`}
-    >
-      <div className="flex flex-col gap-2 w-full">
-        <div className="
-            aspect-square
-            w-full
-            relative
-            overflow-hidden
-            rounded-xl
-            group-hover:scale-110
-            transition
-        ">
-            <Image 
-                fill
-                alt='Listing'
-                src={data.imageSrc}
-                className="
-                    object-cover
-                    h-full
+    <Link href={`/listings/${data.id}`}>
+        <div 
+            className="col-span-1 cursor-pointer group"
+            aria-label={`Go to your lisitng - ${data.title}`}
+        >
+            <div className="flex flex-col gap-2 w-full">
+                <div className="
+                    aspect-square
                     w-full
-                "
-                sizes="80vw"
-                />
-            <div className="absolute top-3 right-3">
-                <HeartButton 
-                    listingId={data.id}
-                    listingTitle={data.title}
-                    currentUser={currentUser}
-                />
+                    relative
+                    overflow-hidden
+                    rounded-xl
+                    group-hover:scale-110
+                    transition
+                ">
+                    <Image 
+                        fill
+                        alt='Listing'
+                        src={data.imageSrc}
+                        className="
+                            object-cover
+                            h-full
+                            w-full
+                        "
+                        sizes="80vw"
+                        />
+                    <div className="absolute top-3 right-3">
+                        <HeartButton 
+                            listingId={data.id}
+                            listingTitle={data.title}
+                            currentUser={currentUser}
+                        />
+                    </div>
+                </div>
+                <p className="font-semibold text-lg">
+                    {location?.region}, {location?.label}
+                </p>
+                <p className="font-light text-neutral-500">
+                    {reservationDate || data.category}
+                </p>
+                <div className="flex items-center gap-1">
+                    <p className="font-semibold">
+                        $ {price}
+                    </p>
+                    {!reservation && (
+                        <p className="font-light">per night</p>
+                    )}
+                </div>
+                {onAction && actionlabel && (
+                    <Button
+                        disabled={disabled}
+                        small
+                        label={actionlabel}
+                        handleClick={handleCancel}
+                    />
+                )}
             </div>
         </div>
-        <p className="font-semibold text-lg">
-            {location?.region}, {location?.label}
-        </p>
-        <p className="font-light text-neutral-500">
-            {reservationDate || data.category}
-        </p>
-        <div className="flex items-center gap-1">
-            <p className="font-semibold">
-                $ {price}
-            </p>
-            {!reservation && (
-                <p className="font-light">per night</p>
-            )}
-        </div>
-        {onAction && actionlabel && (
-            <Button
-                disabled={disabled}
-                small
-                label={actionlabel}
-                handleClick={handleCancel}
-            />
-        )}
-      </div>
-    </div>
+    </Link>
   );
 };
 

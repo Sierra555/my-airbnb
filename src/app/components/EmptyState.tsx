@@ -1,8 +1,8 @@
 'use client';
 
-import { useRouter } from "next/navigation";
 import Heading from "./Heading";
 import Button from "./Button";
+import Link from "next/link";
 
 type EmptyStateProps = {
 title?: string,
@@ -15,8 +15,6 @@ const EmptyState = ({
     subtitle="Try chnaging or removind some of your filters",
     showReset
 }:EmptyStateProps) => {
-    const router = useRouter();
-
   return (
     <div
         className="
@@ -38,11 +36,12 @@ const EmptyState = ({
             mt-4
          ">
             {showReset && (
-                <Button 
-                    outline
-                    label='Remove all filters'
-                    handleClick={() => router.push('/')}
-                />
+                <Link href="/">
+                    <Button 
+                        outline
+                        label='Remove all filters'
+                    />
+                </Link>
             )}
          </div>
     </div>

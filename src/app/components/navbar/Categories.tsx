@@ -4,6 +4,7 @@ import Container from '../Container';
 import { categories } from '@/app/constants';
 import CategoryBox from '../CategoryBox';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 const Categories = () => {
     const params = useSearchParams();
@@ -16,22 +17,24 @@ const Categories = () => {
     
     return (
         <Container>
-        <div className={
-            `flex 
-            items-center 
-            justify-between 
-            pt-4
-            overflow-x-auto`
-        }>
-            {categories.map((item) => (
-            <CategoryBox 
-                key={item.label} 
-                label={item.label}
-                icon={item.icon}
-                selected={category === item.label}
-            />
-            ))}
-        </div>
+            <Suspense>
+                <div className={
+                    `flex 
+                    items-center 
+                    justify-between 
+                    pt-4
+                    overflow-x-auto`
+                }>
+                    {categories.map((item) => (
+                        <CategoryBox 
+                            key={item.label} 
+                            label={item.label}
+                            icon={item.icon}
+                            selected={category === item.label}
+                        />
+                    ))}
+                </div>
+            </Suspense>
         </Container>
     );
 };

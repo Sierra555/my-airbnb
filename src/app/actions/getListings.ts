@@ -22,7 +22,7 @@ export default async function getListings(params: IListingsProps) {
             endDate,
             locationValue,
             category
-        } = await params;
+        } = params;
 
         const query: any = {};
 

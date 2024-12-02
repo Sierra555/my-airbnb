@@ -5,11 +5,12 @@ import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 
 type HomeProps = {
-  searchParams: IListingsProps
+  searchParams: Promise<IListingsProps>
 }
 
-export default async function Home({ searchParams = {}} : HomeProps) {
-  const listings = await getListings(searchParams); 
+export default async function Home({ searchParams} : HomeProps ) {
+  const searchQueries = await searchParams;
+  const listings = await getListings(searchQueries); 
   const currentUser = await getCurrentUser();
 
   if (listings?.length === 0) {
