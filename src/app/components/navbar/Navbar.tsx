@@ -7,6 +7,7 @@ import Search from './Search';
 import UserMenu from './UserMenu';
 import Categories from "./Categories";
 import { Suspense } from "react";
+import Loader from "../Loader";
 
 type NavbarProps = {
   currentUser?: SafeUser | null,
@@ -14,7 +15,7 @@ type NavbarProps = {
 
 const Navbar = ({ currentUser } : NavbarProps ) => {
   return (
-    <Suspense>
+    <Suspense fallback={<Loader />}> 
       <div className='fixed w-full bg-background z-10 shadow-sm'>
           <div className='py-4 border-b-[1px]'>
               <Container>

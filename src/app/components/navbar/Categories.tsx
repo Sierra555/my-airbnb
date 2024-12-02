@@ -5,6 +5,7 @@ import { categories } from '@/app/constants';
 import CategoryBox from '../CategoryBox';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
+import Loader from '../Loader';
 
 const Categories = () => {
     const params = useSearchParams();
@@ -17,7 +18,7 @@ const Categories = () => {
     
     return (
         <Container>
-            <Suspense>
+            <Suspense fallback={<Loader />}> 
                 <div className={
                     `flex 
                     items-center 
