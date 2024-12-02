@@ -8,7 +8,7 @@ type MenuItemProps = {
 const MenuItem = ({ handleClick, label } : MenuItemProps) => {
   return (
     <div 
-        className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+        className="px-4 py-3 rounded-lg hover:bg-neutral-100 transition font-semibold"
         onClick={handleClick}>
         {label}
     </div>
