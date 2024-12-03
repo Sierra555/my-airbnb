@@ -1,12 +1,9 @@
 'use client';
 
 import Leaflet from 'leaflet';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 type DynamicMapProps = {
   center?: number[];
@@ -15,10 +12,22 @@ type DynamicMapProps = {
 //@ts-ignore
 delete Leaflet.Icon.Default.prototype._getIconUrl;
 Leaflet.Icon.Default.mergeOptions({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
+  iconUrl: '/images/leaflet/marker-icon.png',
+  iconRetinaUrl: '/images/leaflet/marker-icon-2x.png',
+  shadowUrl: '/images/leaflet/marker-shadow.png',
 });
+
+const MapUpdater = ({ center }: { center: number[] }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (center) {
+      map.setView(center as Leaflet.LatLngExpression, 4);
+    }
+  }, [center, map]);
+
+  return null;
+};
 
 const DynamicMap = ({ center }: DynamicMapProps) => {
   const mapCenter = useMemo(() => center || [51, -0.09], [center]);
@@ -27,13 +36,18 @@ const DynamicMap = ({ center }: DynamicMapProps) => {
     <div className="h-[35vh] rounded-lg overflow-hidden">
       <MapContainer
         center={mapCenter as Leaflet.LatLngExpression}
-        zoom={center ? 4 : 2}
+        zoom={2}
         scrollWheelZoom={false}
         className="h-full w-full"
       >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer 
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {center && (
-          <Marker position={mapCenter as Leaflet.LatLngExpression} />
+          <>
+            <MapUpdater center={mapCenter as number[]} />
+            <Marker position={mapCenter as Leaflet.LatLngExpression} />
+          </>
         )}
       </MapContainer>
     </div>

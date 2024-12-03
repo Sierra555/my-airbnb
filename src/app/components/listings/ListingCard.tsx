@@ -66,7 +66,7 @@ const ListingCard = ({ data, reservation, onAction, actionlabel, actionId = '', 
                     relative
                     overflow-hidden
                     rounded-xl
-                    group-hover:scale-110
+                    md:group-hover:scale-110
                     transition
                 ">
                     <Image 
