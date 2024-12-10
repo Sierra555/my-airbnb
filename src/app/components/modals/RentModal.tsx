@@ -85,14 +85,6 @@ const RentModal = () => {
         return 'Next';
     }, [step]);
 
-    const secondaryActionLabel = useMemo(() => {
-        if (step === STEPS.CATEGORY) {
-            return undefined;
-        }
-
-        return 'Back';
-    }, [step]);
-
     const onSubmit : SubmitHandler<FieldValues> = async (data) => {
         if (step !== STEPS.PRICE) {
             return onNext();
@@ -279,7 +271,7 @@ const RentModal = () => {
     <Modal 
         title='Airbnb your home'
         actionLabel={actionLabel}
-        secondaryActionLabel={secondaryActionLabel}
+        secondaryActionLabel='Back'
         secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
         isOpen={rentModal.isOpen}
         onOpen={rentModal.onOpen}

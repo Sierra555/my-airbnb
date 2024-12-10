@@ -90,14 +90,6 @@ const SearchModal = () => {
         return 'Next';
     }, [step]);
 
-    const secondaryActionLabel = useMemo(() => {
-        if (step === STEPS.INFO) {
-            return 'Search';
-        }
-
-        return 'Next';
-    }, [step]);
-
     const bodyContent = () => {
         switch (step) {
             case (STEPS.LOCATION): {
@@ -179,11 +171,10 @@ return (
         onOpen={searchModal.onOpen}
         onSubmit={onSubmit}
         actionLabel={actionLabel}
-        secondaryActionLabel={secondaryActionLabel}
+        secondaryActionLabel="Back"
         secondaryAction={step === STEPS.LOCATION ? undefined : onBack}
         body={bodyContent}
-        >
-    </Modal>
+    />
     );
 };
 
