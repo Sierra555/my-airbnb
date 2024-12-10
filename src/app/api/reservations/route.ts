@@ -37,7 +37,5 @@ export async function POST(request: Request) {
       return  NextResponse.json(reservation);
     } catch {
         return NextResponse.error();
-    } finally {
-        await prisma.$disconnect();
     }
 }

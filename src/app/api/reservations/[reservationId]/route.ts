@@ -33,7 +33,5 @@ export async function DELETE(request: Request, {params}: { params : IParams }) {
         return NextResponse.json(reservation);
     } catch  {
         return NextResponse.error();
-    } finally {
-        await prisma.$disconnect();
     }
 }
