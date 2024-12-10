@@ -79,7 +79,7 @@ const Modal = ({
         <div className={
           `translate duration-300 h-full ${showModal ? 'translate-y-0' : 'translate-y-full'} ${showModal ? 'opacity-100' : 'opacity-0'}`
         }>
-          <div ref={modalRef} className="relative translate h-full md:h-auto border-0 rounded-lg shadow-lg flex flex-col w-full outline-none focus-visible:ring bg-background">
+          <div ref={modalRef} className="relative translate border-0 md:rounded-lg shadow-lg flex flex-col w-full outline-none focus-visible:ring bg-background mt-3">
               <div className="relative flex items-center p-6 rounded-t justify-center border-b-[1px] shadow:sm">
                 <button 
                   className="absolute p-1 hover:opacity-70 transition right-9"

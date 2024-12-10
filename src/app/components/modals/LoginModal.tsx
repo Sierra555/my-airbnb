@@ -49,7 +49,7 @@ const LoginModal = () => {
     }
 
     const bodyContent = (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2 md:gap-4">
             <Heading 
                 title='Welcome back to Airbnb'
                 subtitle='Log in to your account!' 

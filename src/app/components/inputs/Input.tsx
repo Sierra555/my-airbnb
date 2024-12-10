@@ -39,7 +39,8 @@ const Input = ({ id, label, type='text', disabled, formatPrice, register, errors
         className={`
           peer
           w-full
-          p-4
+          p-2
+          md:p-4
           mb-4
           text-lg
           font-light

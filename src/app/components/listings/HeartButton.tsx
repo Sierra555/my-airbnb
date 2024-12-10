@@ -20,8 +20,9 @@ const HeartButton = ({ listingId, listingTitle, currentUser} : HeartButtonProps)
             hover:opacity-80
             transition
             cursor-pointer
+            p-5
         "
-        aria-label={`Add ${listingTitle} to favorites`}
+        aria-label={listingTitle ? `Add ${listingTitle} to favorites` : 'Add the property to favorites'}
     >
         <AiOutlineHeart
         size={28}
@@ -30,12 +31,16 @@ const HeartButton = ({ listingId, listingTitle, currentUser} : HeartButtonProps)
             absolute
             -top-[2px]
             -right-[2px]
+            z-10
         "
         />
         <AiFillHeart
         size={24}
         className={`
             ${hasFavorited ? 'fill-rose-500' : 'fill-neutral-500/70'} 
+            absolute
+            -top-[1px]
+            -right-[1px]
        `} 
         />
     </button>
