@@ -16,7 +16,7 @@ type NavbarProps = {
 const Navbar = ({ currentUser } : NavbarProps ) => {
   return (
     <Suspense fallback={<Loader />}> 
-      <div className='fixed w-full bg-background z-10 shadow-sm'>
+      <div className='fixed w-full bg-background z-20 shadow-sm'>
           <div className='py-4 border-b-[1px]'>
               <Container>
                   <div className='flex flex-row items-center justify-between gap-3 md:gap-0'>
